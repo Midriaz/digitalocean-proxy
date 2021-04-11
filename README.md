@@ -1,8 +1,8 @@
 # digitalocean-proxy
-Python script that creates droplets as proxy servers. It is cheapest option if you want quality one-day ip4 proxy. 
+Python script that creates droplets as proxy servers. It is cheapest option if you want good quality private one-day ip4 proxy. 
 
 # RUN
-You must create .env file in project directory. Example:
+Before run you must create .env file in project directory. Example:
 ```
 AUTH_TOKEN='your_digitalocean_access_token'
 PROXY_USER='proxy'

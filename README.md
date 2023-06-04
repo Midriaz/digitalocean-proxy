@@ -15,7 +15,7 @@ This script will create droplets on your DigitalOcean account and therefore will
 The script uses a `.env` file to read configuration details. A sample `.env` file might look like this:
 - `AUTH_TOKEN`: Your DigitalOcean authorization token.
 - `PROXY_PORT`: The port to be used for the proxy. Default is 3128.
-- `REGION`: The region in which the droplet should be created.
+- `REGION`: The region(s) in which the droplet should be created.
 - `DROPLET_TAG`: A tag for your droplet.
 - `PROXY_USER`: The username for the proxy.
 - `DROPLET_PRICE`: The price of the droplet (for cost calculation).
@@ -23,11 +23,11 @@ The script uses a `.env` file to read configuration details. A sample `.env` fil
 
 ```
 AUTH_TOKEN='your_digitalocean_access_token'
-PROXY_USER='proxy'
+PROXY_USER=proxy
 DROPLET_PRICE=6
 GHOST_BROWSER_FORMAT=0
-REGION='ams3'
-DROPLET_TAG='autoproxy'
+REGION=ams2,ams3,fra1
+DROPLET_TAG=autoproxy
 ```
 
 ## Usage
@@ -41,4 +41,4 @@ python main.py [proxy_count] [per_file]
 * proxy_count: The number of droplets to create (default: 1).
 * per_file: The number of droplets' details to store per file (default: 1).
 
-* The script will create a new directory ./proxy_{date_tag}, where the droplet details will be stored in either TXT or CSV format, depending on the GHOST_BROWSER_FORMAT variable in the .env file.
+The script will create a new directory ./proxy_{date_tag}, where the droplet details will be stored in either TXT or CSV format, depending on the GHOST_BROWSER_FORMAT variable in the .env file.

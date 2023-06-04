@@ -84,18 +84,18 @@ if __name__ == '__main__':
     # 1 - for Ghost browser, CSV, "name:host:port:user:password:tags"
     out_format = int(config['GHOST_BROWSER_FORMAT']) if 'GHOST_BROWSER_FORMAT' in config else 0
 
-    # make output dir
-    date_tag = datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
-    out_dir = f'./proxy_{date_tag}'
-    mkdir(out_dir)
-
-    # droplet list
-    droplets = []
-
     if input(f'Do you really want to create {Fore.YELLOW}{proxy_count}{Style.RESET_ALL} droplets '
              f'and import them to {Fore.YELLOW}{ceil(proxy_count/per_file)}{Style.RESET_ALL} files? '
-             f'It will cost you {Fore.YELLOW}~{int(config["DROPLET_PRICE"])/30:.2f}${Style.RESET_ALL} per day. '
+             f'It will cost you {Fore.YELLOW}~{proxy_count*int(config["DROPLET_PRICE"])/30:.2f}${Style.RESET_ALL} per day. '
              f'{Fore.GREEN}Print "y" to confirm.{Style.RESET_ALL} ') == 'y':
+        # make output dir
+        date_tag = datetime.now().strftime("%Y-%m-%dT%H-%M-%S")
+        out_dir = f'./proxy_{date_tag}'
+        mkdir(out_dir)
+
+        # droplet list
+        droplets = []
+
         for i in range(proxy_count):
             droplet_name = f'p{i+1:04d}'
             password = generate_password()

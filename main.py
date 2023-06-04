@@ -77,6 +77,7 @@ if __name__ == '__main__':
     config = dotenv_values('.env')
     config['PROXY_PORT'] = config.get('PROXY_PORT', '3128')
     headers = {'Authorization': f'Bearer {config["AUTH_TOKEN"]}'}
+    region = choice(config['REGION'].split(','))
 
     # output format
     # 0 - TXT format "host:port:user:password",
@@ -98,13 +99,15 @@ if __name__ == '__main__':
         for i in range(proxy_count):
             droplet_name = f'p{i+1:04d}'
             password = generate_password()
-            droplet_id = create_droplet(headers,
-                                        droplet_name,
-                                        config['REGION'],
-                                        config['DROPLET_TAG'],
-                                        config['PROXY_PORT'],
-                                        config['PROXY_USER'],
-                                        password)
+            droplet_id = create_droplet(
+                headers,
+                droplet_name,
+                region,
+                config['DROPLET_TAG'],
+                config['PROXY_PORT'],
+                config['PROXY_USER'],
+                password
+            )
             if droplet_id is not None:
                 # log id of droplets
                 f = open(f'{out_dir}/droplets.log', 'a')

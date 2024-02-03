@@ -42,3 +42,5 @@ python main.py [proxy_count] [per_file]
 * per_file: The number of droplets' details to store per file (default: 1).
 
 The script will create a new directory ./proxy_{date_tag}, where the droplet details will be stored in either TXT or CSV format, depending on the GHOST_BROWSER_FORMAT variable in the .env file.
+
+Proxy type is HTTP!
